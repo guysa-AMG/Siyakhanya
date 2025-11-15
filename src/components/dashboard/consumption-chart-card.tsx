@@ -1,4 +1,3 @@
-
 // siyaKhanya — kimmy@siyaKhanya
 "use client";
 
@@ -11,8 +10,10 @@ import {
 } from "@/components/ui/chart";
 import React, { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
+import { Loader2 } from "lucide-react";
+import { communities } from "@/lib/data";
 
-type Point = { timestamp: string; predicted_kwh: number, hour: string };
+type PredictionPoint = { timestamp: string; predicted_kwh: number; hour: string };
 
 const chartConfig = {
   predicted_kwh: {
@@ -21,37 +22,63 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const generateData = () => {
-    const now = new Date();
-    const points = Array.from({ length: 24 }).map((_, i) => {
-      const ts = new Date(now.getTime() + i * 3600 * 1000);
-      return { 
-        timestamp: ts.toISOString(), 
-        predicted_kwh: Math.max(0, 2 + Math.sin(i / 3) * 1.5 + Math.random() * 0.5),
-        hour: `${ts.getHours()}:00`
-      };
-    });
-    return points;
-};
+async function getPredictions(communityId: string): Promise<PredictionPoint[]> {
+  try {
+    const response = await fetch(`/api/communities/${communityId}/predictions`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch predictions');
+    }
+    const data = await response.json();
+    return data.points.map((p: any) => ({
+      ...p,
+      hour: new Date(p.timestamp).toLocaleTimeString('en-ZA', { hour: '2-digit', minute: '2-digit', timeZone: 'Africa/Johannesburg' })
+    }));
+  } catch (error) {
+    console.error("Error fetching prediction data:", error);
+    return []; // Return empty array on error
+  }
+}
 
-
-export function ConsumptionChartCard() {
-  const [data, setData] = useState<Point[]>([]);
+export function ConsumptionChartCard({ communityId }: { communityId: string }) {
+  const [data, setData] = useState<PredictionPoint[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Generate data on the client side to prevent hydration mismatch.
-    setData(generateData());
-  }, []);
+    const fetchData = async () => {
+      setIsLoading(true);
+      setError(null);
+      const predictionData = await getPredictions(communityId);
+      if (predictionData.length === 0) {
+        setError("Could not load prediction data.");
+      }
+      setData(predictionData);
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [communityId]);
+  
+  const communityName = communities.find(c => c.id === communityId)?.name || 'Community';
 
   return (
-    <Card>
+    <Card className="h-full">
       <CardHeader>
-        <CardTitle>Hourly Demand (Predicted)</CardTitle>
+        <CardTitle>Hourly Demand for {communityName} (Predicted)</CardTitle>
         <CardDescription>Predicted energy consumption for the next 24 hours.</CardDescription>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-[300px] w-full">
-          {data.length > 0 ? (
+      <CardContent className="h-[calc(100%-80px)]">
+        <ChartContainer config={chartConfig} className="h-full w-full">
+          {isLoading ? (
+            <div className="h-full w-full flex flex-col items-center justify-center text-muted-foreground">
+              <Loader2 className="h-8 w-8 animate-spin mb-4" />
+              <p>Loading chart data...</p>
+            </div>
+          ) : error ? (
+            <div className="h-full w-full flex items-center justify-center text-destructive">
+             {error}
+            </div>
+          ) : data.length > 0 ? (
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -79,8 +106,8 @@ export function ConsumptionChartCard() {
               </LineChart>
             </ResponsiveContainer>
           ) : (
-            <div className="h-[300px] w-full flex items-center justify-center text-muted-foreground">
-              Loading chart data...
+            <div className="h-full w-full flex items-center justify-center text-muted-foreground">
+              No data available.
             </div>
           )}
         </ChartContainer>

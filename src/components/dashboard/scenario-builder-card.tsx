@@ -29,8 +29,12 @@ type PaybackResult = {
     payback_years: number;
 };
 
-export function ScenarioBuilderCard() {
-  const [community, setCommunity] = useState(communities[0].id);
+interface ScenarioBuilderCardProps {
+  selectedCommunityId: string;
+  onCommunityChange: (id: string) => void;
+}
+
+export function ScenarioBuilderCard({ selectedCommunityId, onCommunityChange }: ScenarioBuilderCardProps) {
   const [systemKw, setSystemKw] = useState(3);
   const [batteryKwh, setBatteryKwh] = useState(5);
   const [price, setPrice] = useState(2.5);
@@ -38,7 +42,7 @@ export function ScenarioBuilderCard() {
 
   const runPayback = () => {
     // replace with real API call
-    console.log("Payback API call stubbed with params:", { community, systemKw, batteryKwh, price });
+    console.log("Payback API call stubbed with params:", { community: selectedCommunityId, systemKw, batteryKwh, price });
     // Stubbed response for demonstration
     const payback_years = 7.2;
     const npv = 15340.21
@@ -56,7 +60,7 @@ export function ScenarioBuilderCard() {
       <CardContent className="grid gap-6">
         <div className="grid gap-2">
           <Label htmlFor="community">Community</Label>
-          <Select value={community} onValueChange={setCommunity}>
+          <Select value={selectedCommunityId} onValueChange={onCommunityChange}>
             <SelectTrigger id="community">
               <SelectValue placeholder="Select a community" />
             </SelectTrigger>
