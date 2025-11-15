@@ -1,0 +1,171 @@
+# siyaKhanya OpenAPI (starter) — kimmy@siyaKhanya
+openapi: 3.0.3
+info:
+  title: siyaKhanya API
+  version: "0.1.0"
+  description: Starter API for predictions, payback and affordability.
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /auth/login:
+    post:
+      summary: Login (returns JWT)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        "200":
+          description: JWT token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+
+  /communities:
+    get:
+      summary: List communities
+      responses:
+        "200":
+          description: community list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Community'
+
+  /communities/{id}/predictions:
+    get:
+      summary: Get hourly predictions for a community
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        "200":
+          description: hourly predictions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PredictionResponse'
+
+  /communities/{id}/payback:
+    get:
+      summary: Get payback & NPV for a chosen system
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: systemId
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: payback object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaybackResponse'
+
+  /upload/consumption:
+    post:
+      summary: Upload consumption CSV
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: upload accepted
+
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required: [username, password]
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    Community:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+            lng:
+              type: number
+    PredictionPoint:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        predicted_kwh:
+          type: number
+        conf_low:
+          type: number
+        conf_high:
+          type: number
+    PredictionResponse:
+      type: object
+      properties:
+        community_id:
+          type: string
+        model_version:
+          type: string
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/PredictionPoint'
+    PaybackResponse:
+      type: object
+      properties:
+        system_id:
+          type: string
+        npv:
+          type: number
+        payback_years:
+          type: number
+        yearly_cashflows:
+          type: array
+          items:
+            type: object
+            properties:
+              year: { type: integer }
+              net: { type: number }
