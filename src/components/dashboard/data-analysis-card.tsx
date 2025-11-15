@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { analyzeConsumptionData } from "@/lib/actions";
 import { AlertTriangle, FileUp, Loader2, Info } from "lucide-react";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import type { DetectAnomaliesOutput } from "@/ai/flows/detect-anomalies-in-consumption-data";
 
 export function DataAnalysisCard() {
@@ -24,14 +24,14 @@ export function DataAnalysisCard() {
   const [result, setResult] = useState<DetectAnomaliesOutput | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
+    if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
       setError(null);
       setResult(null);
     }
   };
 
-  const handleAnalysis = async () => {
+  const handleAnalysis = useCallback(async () => {
     if (!file) {
       setError("Please select a file first.");
       return;
@@ -41,23 +41,21 @@ export function DataAnalysisCard() {
     setError(null);
     setResult(null);
 
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const text = e.target?.result as string;
+    try {
+      const text = await file.text();
       const response = await analyzeConsumptionData(text);
       if (response.error) {
         setError(response.error);
-      } else if(response.data){
+      } else if (response.data) {
         setResult(response.data);
       }
-      setIsLoading(false);
-    };
-    reader.onerror = () => {
+    } catch (e) {
       setError("Failed to read file.");
+      console.error(e);
+    } finally {
       setIsLoading(false);
-    };
-    reader.readAsText(file);
-  };
+    }
+  }, [file]);
 
   return (
     <Card>

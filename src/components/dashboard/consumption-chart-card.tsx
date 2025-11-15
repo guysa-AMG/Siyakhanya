@@ -20,21 +20,32 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export function ConsumptionChartCard() {
-  const [data, setData] = useState<Point[]>([]);
-
-  useEffect(() => {
-    // simple stub — replace with real API call
+const generateInitialData = () => {
     const now = new Date();
+    // Use a fixed seed for initial render to avoid hydration mismatch
+    let randomSeed = 0.5; 
     const points = Array.from({ length: 24 }).map((_, i) => {
       const ts = new Date(now.getTime() + i * 3600 * 1000);
+      // Consistent pseudo-randomness for initial load
+      randomSeed = (randomSeed * 9301 + 49297) % 233280;
+      const randomVal = randomSeed / 233280;
       return { 
         timestamp: ts.toISOString(), 
-        predicted_kwh: Math.max(0, 2 + Math.sin(i / 3) * 1.5 + Math.random() * 0.5),
+        predicted_kwh: Math.max(0, 2 + Math.sin(i / 3) * 1.5 + randomVal * 0.5),
         hour: `${ts.getHours()}:00`
       };
     });
-    setData(points);
+    return points;
+};
+
+
+export function ConsumptionChartCard() {
+  const [data, setData] = useState<Point[]>(generateInitialData());
+
+  useEffect(() => {
+    // On the client, after hydration, we can use real random data if we want.
+    // For this case, we'll just stick with the initial data.
+    // If you needed to fetch data, this is where you'd do it.
   }, []);
 
   return (

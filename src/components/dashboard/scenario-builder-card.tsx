@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import { communities } from "@/lib/data";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { DollarSign, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 
 type PaybackResult = {
     npv: number;
@@ -36,20 +36,13 @@ export function ScenarioBuilderCard() {
   const [price, setPrice] = useState(2.5);
   const [paybackResult, setPaybackResult] = useState<PaybackResult | null>(null);
 
-  async function runPayback() {
+  const runPayback = () => {
     // replace with real API call
-    try {
-    //   const res = await axios.get(`/api/communities/${community}/payback?systemId=demo`, { params: { systemKw, batteryKwh, price } });
-    //   setPaybackResult(res.data);
-      console.log("Payback API call stubbed with params:", { community, systemKw, batteryKwh, price });
-      // Stubbed response for demonstration
-      const payback_years = 7.2;
-      const npv = 15340.21
-      setPaybackResult({ payback_years, npv });
-    } catch (e) {
-      console.warn("API not configured; this is a stub.");
-      setPaybackResult({ payback_years: 8.5, npv: 12500 });
-    }
+    console.log("Payback API call stubbed with params:", { community, systemKw, batteryKwh, price });
+    // Stubbed response for demonstration
+    const payback_years = 7.2;
+    const npv = 15340.21
+    setPaybackResult({ payback_years, npv });
   }
 
   return (
