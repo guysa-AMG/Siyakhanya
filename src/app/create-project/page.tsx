@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import "./create-project.css"
 import { Button } from "@/components/ui/button";
+import {ShareButton} from "@/components/ui/shareButton"
 import {
   Form,
   FormControl,
@@ -167,6 +168,9 @@ export default function CreateProjectPage() {
                 </FormItem>
               )}
             />
+           <ShareButton
+           title="invite"
+                      />
 
             {error && (
               <Alert variant="destructive">
