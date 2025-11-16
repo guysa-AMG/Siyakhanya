@@ -12,7 +12,7 @@ dependencies:
   google_fonts: ^6.3.2
   json_rpc_2: ^4.0.0
   path: ^1.9.1
-  siyakhanya:
+  Solar-Neighbour:
     path: ../..
   stack_trace: ^1.12.1
   url_launcher: ^6.3.2
@@ -20,5 +20,5 @@ dependencies:
 flutter:
   uses-material-design: true
 dependency_overrides:
-  siyakhanya:
+  Solar-Neighbour:
     path: ../..

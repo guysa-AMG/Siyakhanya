@@ -6,7 +6,7 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'siyaKhanyaAI',
+  title: 'Solar-NeighbourAI',
   description: 'Community energy forecasting & payback analysis',
 };
 

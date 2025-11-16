@@ -19,7 +19,7 @@ export function SplineSceneBasic() {
             Smarter Energy, Brighter Futures.
           </h1>
           <p className="mt-4 text-muted-foreground max-w-lg mx-auto md:mx-0">
-            siyaKhanya provides powerful tools for community energy planning. Predict demand, analyze financial viability, and ensure affordable, sustainable power for everyone.
+            Solar-Neighbour provides powerful tools for community energy planning. Predict demand, analyze financial viability, and ensure affordable, sustainable power for everyone.
           </p>
         </div>
 

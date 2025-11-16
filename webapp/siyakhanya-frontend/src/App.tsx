@@ -1,25 +1,29 @@
+
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from './theme/theme';
+import LandingPage from './pages/LandingPage';
+import Home from './pages/MarketplacePage';
+import GroupFormationPage from './pages/GroupFormationPage';
+import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+       
+        <Box component="main">
+          <Routes>
+            <Route path="/marketplace" element={<LandingPage />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/group-formation" element={<GroupFormationPage />} />
+          </Routes>
+        </Box>
+      </Router>
+    </ThemeProvider>
   );
 }
 

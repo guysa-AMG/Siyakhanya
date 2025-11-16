@@ -1,12 +1,12 @@
-# Siyakhanya
+# Solar-Neighbour
 the calculator that tells developers and the government where and how to safely replace illegal electricity with formal, affordable power.
 
 
- **Siyakhanya**, designed to be professional, highlight the dual market strategy, and score high on all criteria.
+ **Solar-Neighbour**, designed to be professional, highlight the dual market strategy, and score high on all criteria.
 
 -----
 
-# ✨ Siyakhanya (We are lighting up)
+# ✨ Solar-Neighbour (We are lighting up)
 
 **NEMISA Sonke Discothon 2025 Submission**
 
@@ -16,7 +16,7 @@ the calculator that tells developers and the government where and how to safely 
 
 ## 💡 Overview & Innovation
 
-**Siyakhanya** is a single website offering **two specialized feasibility tools** to solve the energy crisis for distinct South African markets. Our core innovation is using advanced data modeling to transform national instability (Eskom risk) into personalized, actionable financial insights.
+**Solar-Neighbour** is a single website offering **two specialized feasibility tools** to solve the energy crisis for distinct South African markets. Our core innovation is using advanced data modeling to transform national instability (Eskom risk) into personalized, actionable financial insights.
 
 ### Core Tools
 
@@ -64,7 +64,7 @@ This solution demonstrates clear market understanding and a strong **Media Strat
 
 ### B. Media Campaign (Slogan & Vibe)
 
-  * **Slogan:** **"Gatvol of Guessing? Siyakhanya\! We are lighting up the future."**
+  * **Slogan:** **"Gatvol of Guessing? Solar-Neighbour\! We are lighting up the future."**
   * **Strategy:** Two tailored campaigns: one focusing on **financial ROI** (Mid-Income) and one focusing on **safety and social viability** (Community), proving the solution is marketable across South Africa's diverse population.
 
 -----
@@ -77,4 +77,4 @@ This solution demonstrates clear market understanding and a strong **Media Strat
     ```
 2.  **Run Locally:** Open the `index.html` file in any web browser. (No server is required.)
 
-**Siyakhanya** is ready to shine\!
+**Solar-Neighbour** is ready to shine\!

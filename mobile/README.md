@@ -1,4 +1,4 @@
-# siyakhanya
+# Solar-Neighbour
 
 A new Flutter project.
 

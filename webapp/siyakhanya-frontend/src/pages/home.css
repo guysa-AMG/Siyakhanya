@@ -1,0 +1,19 @@
+html{
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    overflow: hidden;
+}
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.home h1{
+    font-size: 50pt;
+    margin: 0px;
+}

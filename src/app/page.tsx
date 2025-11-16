@@ -1,4 +1,4 @@
-// siyaKhanya — kimmy@siyaKhanya
+// Solar-Neighbour — kimmy@Solar-Neighbour
 'use client';
 
 import { SplineSceneBasic } from '@/components/dashboard/spline-scene-basic';
@@ -16,8 +16,8 @@ export default function Home() {
             <SplineSceneBasic />
             <div className="mt-8">
                  <Button asChild size="lg">
-                    <Link href="/dashboard">
-                        Go to Dashboard
+                    <Link href="/onboard">
+                        get Started
                         <ArrowRight className="ml-2"/>
                     </Link>
                 </Button>
@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="py-4 text-center text-sm text-muted-foreground border-t">
-        <span>© siyaKhanya</span>
+        <span>© Solar-Neighbour</span>
       </footer>
     </div>
   );

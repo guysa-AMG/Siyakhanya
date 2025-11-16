@@ -1,10 +1,10 @@
 {
   "roots": [
-    "siyakhanya"
+    "Solar-Neighbour"
   ],
   "packages": [
     {
-      "name": "siyakhanya",
+      "name": "Solar-Neighbour",
       "version": "1.0.0+1",
       "dependencies": [
         "cupertino_icons",

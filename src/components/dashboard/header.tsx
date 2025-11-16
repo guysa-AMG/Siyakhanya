@@ -1,4 +1,4 @@
-// siyaKhanya — kimmy@siyaKhanya
+// Solar-Neighbour — kimmy@Solar-Neighbour
 'use client';
 
 import { Button } from "@/components/ui/button";
@@ -17,20 +17,13 @@ export function Header() {
           <div className="bg-primary text-primary-foreground p-2 rounded-lg">
              <Sun className="h-6 w-6" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">siyaKhanya</h1>
+          <h1 className="text-2xl font-bold text-foreground">Solar-Neighbour</h1>
         </Link>
         <div className="flex items-center gap-4">
-            <p className="text-muted-foreground hidden md:block">Community energy forecasting & payback</p>
-            {pathname !== '/faq' && (
-                <Button asChild variant="ghost">
-                    <Link href="/faq">FAQ</Link>
-                </Button>
-            )}
-            {pathname !== '/dashboard' && pathname !== '/' && (
-                 <Button asChild variant="ghost">
-                    <Link href="/dashboard">Dashboard</Link>
-                </Button>
-            )}
+          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <Link href="/projects">Projects</Link>
+            <Link href="/create-project">Create a Project</Link>
+          </nav>
         </div>
       </div>
     </header>

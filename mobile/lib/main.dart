@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Siyakhanya',
+      title: 'Solar-Neighbour',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse('https://siyakhanya.vercel.app/'));
+      ..loadRequest(Uri.parse('https://Solar-Neighbour.vercel.app/'));
 =======
   int _counter = 0;
 

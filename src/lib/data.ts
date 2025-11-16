@@ -1,4 +1,4 @@
-// siyaKhanya — kimmy@siyaKhanya
+// Solar-Neighbour — kimmy@Solar-Neighbour
 export const communities = [
   { id: 'stellenbosch', name: 'Stellenbosch' },
   { id: 'khayelitsha', name: 'Khayelitsha' },

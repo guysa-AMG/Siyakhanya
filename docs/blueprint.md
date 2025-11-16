@@ -1,4 +1,4 @@
-# **App Name**: siyaKhanyaAI
+# **App Name**: Solar-NeighbourAI
 
 ## Core Features:
 

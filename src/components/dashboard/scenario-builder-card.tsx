@@ -1,4 +1,4 @@
-// siyaKhanya — kimmy@siyaKhanya
+// Solar-Neighbour — kimmy@Solar-Neighbour
 "use client";
 
 import {
