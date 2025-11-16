@@ -31,7 +31,7 @@ export function TermsOfUsePopup() {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Terms of Use</AlertDialogTitle>
-          <AlertDialogDescription style={{"height":"80vh"}}>
+          <AlertDialogDescription style={{"height":"75vh","overflow":"scroll"}}>
             Terms and Conditions of Service
 
 Effective Date: November 1, 2025
