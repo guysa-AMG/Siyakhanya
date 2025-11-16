@@ -1,9 +1,5 @@
 name: Solar-Neighbour
-<<<<<<< HEAD
 description: "the calculator that tells developers and the government where and how to safely replace illegal electricity with formal, affordable power."
-=======
-description: "A new Flutter project."
->>>>>>> 5674221d5729e5abcc78f26f72c301e386d1e3d6
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -39,11 +35,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   device_preview: ^1.3.1
-<<<<<<< HEAD
   flutter_launcher_icons: ^0.14.4
   webview_flutter: ^4.13.0
-=======
->>>>>>> 5674221d5729e5abcc78f26f72c301e386d1e3d6
 
 dev_dependencies:
   flutter_test:

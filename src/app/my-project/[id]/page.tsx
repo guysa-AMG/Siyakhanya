@@ -1,7 +1,7 @@
 // Solar-Neighbour — kimmy@Solar-Neighbour
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '@/components/dashboard/header';
 import { Project } from '@/lib/projects-data';
 import { proposals as mockProposals, Proposal } from '@/lib/proposals-data';
@@ -32,19 +32,20 @@ function getProposalsForProject(projectId: string): Proposal[] {
 export default function MyProjectPage({ params }: { params: { id: string } }) {
   const [project, setProject] = useState<Project | null>(null);
   const [proposals, setProposals] = useState<Proposal[]>([]);
+ 
   const [isLoading, setIsLoading] = useState(true);
 
   const [error, setError] = useState<string | null>(null);
-
+  const projId=params.id
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       setError(null);
       try {
-        const fetchedProject = await getProject(params.id);
+        const fetchedProject = await getProject(projId);
         if (fetchedProject) {
           setProject(fetchedProject);
-          const fetchedProposals = getProposalsForProject(params.id);
+          const fetchedProposals = getProposalsForProject(projId);
           setProposals(fetchedProposals);
         }
       } catch (e: any) {
@@ -55,7 +56,7 @@ export default function MyProjectPage({ params }: { params: { id: string } }) {
     };
 
     fetchData();
-  }, [params.id]);
+  }, [projId]);
 
   if (isLoading) {
     return (
@@ -119,7 +120,10 @@ export default function MyProjectPage({ params }: { params: { id: string } }) {
                           <div className="flex items-center gap-2">
                             <Calendar className="h-4 w-4" />
                             <strong>Timeline:</strong> {proposal.estimatedTimeline}
+
+
                           </div>
+                          
                         </div>
                       </CardContent>
                     </Card>

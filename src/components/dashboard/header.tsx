@@ -2,7 +2,7 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { Sun } from "lucide-react";
+import { LucidePower } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,7 +15,7 @@ export function Header() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <div className="bg-primary text-primary-foreground p-2 rounded-lg">
-             <Sun className="h-6 w-6" />
+             <LucidePower />
           </div>
           <h1 className="text-2xl font-bold text-foreground">Solar-Neighbour</h1>
         </Link>

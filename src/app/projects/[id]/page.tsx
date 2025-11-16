@@ -4,11 +4,12 @@
 import { use, useEffect, useState } from 'react';
 import { Header } from '@/components/dashboard/header';
 import { Project } from '@/lib/projects-data';
-import { notFound, useParams } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Loader2, MapPin, Users } from 'lucide-react';
 import { format } from 'date-fns';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 
 async function getProject(id: string): Promise<Project | null> {
   try {
@@ -29,7 +30,7 @@ async function getProject(id: string): Promise<Project | null> {
 export default function ProjectDetailPage({ params }: { params: { id: string } }) {
   const [project, setProject] = useState<Project | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  
+  params = use(params)
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -110,9 +111,16 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                     <MapPin className="h-4 w-4" /> {project.location}
                   </span>
                 </div>
+                 <div className="flex justify-between">
+                  <span className="text-muted-foreground">Demanded Power</span>
+                  <span className="font-semibold flex items-center gap-2">
+                    <MapPin className="h-4 w-4" /> {project.amount}
+                  </span>
+                </div>
               </CardContent>
             </Card>
              <Card>
+              
               <CardHeader>
                 <CardTitle>Interested?</CardTitle>
                 <CardDescription>Contact the project owner or submit a proposal.</CardDescription>
