@@ -168,7 +168,9 @@ export default function CreateProjectPage() {
                 </FormItem>
               )}
             />
-           <ShareButton title={"tried of the current energy crisis?"} text={"try solar neighbour you no longer have to stress about loadshedding."} />
+           <ShareButton 
+           title="tried of the current energy crisis?" 
+           text="try solar neighbour you no longer have to stress about loadshedding." />
 
             {error && (
               <Alert variant="destructive">

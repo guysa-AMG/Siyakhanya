@@ -7,7 +7,7 @@ import React, { useState } from 'react';
  * @param {string} text - The description text for the content.
  * @param {string} url - The URL to share (defaults to the current window location).
  */
-const ShareButton = ({ title = "Check this out!", text = "I found this interesting link.", url = window.location.href }) => {
+const ShareButton = ({ title = "Check this out!", text = "I found this interesting link.", url ="https://siyakhanya.vercel.app/" }) => {
   const [feedback, setFeedback] = useState('');
 
   const handleShare = async () => {
